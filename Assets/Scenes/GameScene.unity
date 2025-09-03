@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 7
+  gameScript: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +811,7 @@ GameObject:
   - component: {fileID: 1847740431}
   - component: {fileID: 1847740430}
   m_Layer: 0
-  m_Name: GameInput
+  m_Name: GameScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
