@@ -531,6 +531,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87bd713554689534c90f964525f4567c, type: 3}
+--- !u!114 &575906683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2291660943720410012, guid: 87bd713554689534c90f964525f4567c, type: 3}
+  m_PrefabInstance: {fileID: 465365257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b139f30b13c0c24faa5bbf2ed4bb6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClearCounter
 --- !u!1 &617332060
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,9 +932,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2291660943720410012, guid: 87bd713554689534c90f964525f4567c, type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2291660943720410012, guid: 87bd713554689534c90f964525f4567c, type: 3}
       propertyPath: tomatoPrefab
       value: 
       objectReference: {fileID: 581244382467089372, guid: 79718a135b48ae94384610424e240e7a, type: 3}
+    - target: {fileID: -2291660943720410012, guid: 87bd713554689534c90f964525f4567c, type: 3}
+      propertyPath: secondClearCounter
+      value: 
+      objectReference: {fileID: 575906683}
     - target: {fileID: 12656054214788534, guid: 87bd713554689534c90f964525f4567c, type: 3}
       propertyPath: m_Name
       value: ClearCounter
