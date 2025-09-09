@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selected
       objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282922, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.01
@@ -105,8 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a331a2e7ec70ef4fbce37524309a057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectedCounterVisual
-  clearCounter: {fileID: 4670200520828855458}
-  visualGameObject: {fileID: 4672369984590375689}
+  baseCounter: {fileID: 4670200520828855458}
+  visualGameObjectArray:
+  - {fileID: 4672369984590375689}
 --- !u!4 &768317492812893421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
