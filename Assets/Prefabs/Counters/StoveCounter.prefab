@@ -286,7 +286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoveCounter
   counterTopPoint: {fileID: 2040884610790997611}
   fryingRecepiSOArray:
-  - {fileID: 11400000, guid: 489ca892ef7e60c489fa93b4453b7b9a, type: 2}
+  - {fileID: 11400000, guid: f73d42e1bf3b2f24fa8844745fe5b05c, type: 2}
+  burningRecepiSOArray:
+  - {fileID: 11400000, guid: dd67ff0f999555141b784111ad88010f, type: 2}
 --- !u!4 &8790863354697282556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3574858578362923090, guid: 56c123e73405bd44fbd5f7f5d813a757, type: 3}

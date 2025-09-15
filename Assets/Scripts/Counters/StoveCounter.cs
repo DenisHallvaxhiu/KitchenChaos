@@ -2,21 +2,57 @@ using UnityEngine;
 
 public class StoveCounter : BaseCounter {
 
+    private enum State {
+        Idle,
+        Frying,
+        Fried,
+        Burned
+    }
+
     [SerializeField] private FryingRecepiSO[] fryingRecepiSOArray;
+    [SerializeField] private BurningRecepiSO[] burningRecepiSOArray;
+    private State state;
 
     private float fryingTimer;
     private FryingRecepiSO fryingRecepiSO;
+    private float burningTimer;
+    private BurningRecepiSO burningRecepiSO;
+
+    private void Start() {
+        state = State.Idle;
+    }
+
     private void Update() {
         if(HasKitchenObject()) {
-            fryingTimer += Time.deltaTime;
-            if(fryingTimer > fryingRecepiSO.fryingTimerMax) {
-                //Fried
-                fryingTimer = 0;
-                GetKitchenObject().DestroySelf();
-                Debug.Log("Fried");
-                KitchenObject.SpawnKitchenObject(fryingRecepiSO.output,this);
+            switch(state) {
+                case State.Idle:
+                break;
+                case State.Frying:
+                fryingTimer += Time.deltaTime;
+                if(fryingTimer > fryingRecepiSO.fryingTimerMax) {
+                    //Fried
+                    GetKitchenObject().DestroySelf();
+                    KitchenObject.SpawnKitchenObject(fryingRecepiSO.output,this);
+                    Debug.Log("Object Fried");
+
+                    burningRecepiSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectsSO());
+                    state = State.Fried;
+                    burningTimer = 0;
+                }
+                break;
+                case State.Fried:
+                burningTimer += Time.deltaTime;
+                if(burningTimer > burningRecepiSO.burningTimerMax) {
+                    GetKitchenObject().DestroySelf();
+                    KitchenObject.SpawnKitchenObject(burningRecepiSO.output,this);
+                    Debug.Log("Object Burned");
+                    state = State.Burned;
+                }
+                break;
+                case State.Burned:
+                break;
             }
-            Debug.Log(fryingTimer);
+            Debug.Log(state);
         }
     }
 
@@ -30,6 +66,8 @@ public class StoveCounter : BaseCounter {
                     player.GetKitchenObject().SetKitchenObjectParent(this);
 
                     fryingRecepiSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectsSO());
+                    state = State.Frying;
+                    fryingTimer = 0f;
                 }
             }
             else {
@@ -66,6 +104,15 @@ public class StoveCounter : BaseCounter {
         foreach(FryingRecepiSO fryingRecepiSO in fryingRecepiSOArray) {
             if(fryingRecepiSO.input == inputKitchenObjectSO) {
                 return fryingRecepiSO;
+            }
+        }
+        return null;
+    }
+
+    private BurningRecepiSO GetBurningRecipeSOWithInput(KitchenObjectsSO inputKitchenObjectSO) {
+        foreach(BurningRecepiSO burningRecepiSO in burningRecepiSOArray) {
+            if(burningRecepiSO.input == inputKitchenObjectSO) {
+                return burningRecepiSO;
             }
         }
         return null;
