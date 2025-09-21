@@ -9,6 +9,7 @@ public class PlateIconsUI : MonoBehaviour {
     }
 
     private void Start() {
+        iconTemplate.gameObject.SetActive(false);
         plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
     }
 
