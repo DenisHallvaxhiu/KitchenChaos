@@ -4,6 +4,13 @@ public class SoundManager : MonoBehaviour {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] private AudioClipRefSO audioClipRefSO;
+    public static SoundManager Instance {
+        get; private set;
+    }
+
+    private void Awake() {
+        Instance = this;
+    }
 
     private void Start() {
         CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
@@ -47,5 +54,9 @@ public class SoundManager : MonoBehaviour {
     }
     private void PlaySound(AudioClip audioClip,Vector3 position,float volume = 1f) {
         AudioSource.PlayClipAtPoint(audioClip,position,volume);
+    }
+
+    public void PlayFootstepSound(Vector3 position,float volume) {
+        PlaySound(audioClipRefSO.footstep,position,volume);
     }
 }
