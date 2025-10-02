@@ -27,6 +27,7 @@ public class OptionsUI : MonoBehaviour {
     [SerializeField] private Button interactButton;
     [SerializeField] private Button interactAlternateButton;
     [SerializeField] private Button pauseButton;
+    [SerializeField] Transform pressToRebindKeyTransform;
 
 
 
@@ -49,10 +50,14 @@ public class OptionsUI : MonoBehaviour {
             Hide();
         });
 
-        moveUpButton.onClick.AddListener(() =>
-        {
-            GameScript.Instance.RebindBinding(GameScript.Binding.Move_Up);
-        });
+        moveUpButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Move_Up); });
+        moveDownButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Move_Down); });
+        moveLeftButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Move_Left); });
+        moveRightButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Move_Right); });
+        interactButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Interact); });
+        interactAlternateButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.InteractAlternate); });
+        pauseButton.onClick.AddListener(() => { RebindBinding(GameScript.Binding.Pause); });
+
 
     }
 
@@ -62,6 +67,7 @@ public class OptionsUI : MonoBehaviour {
 
         UpdateVisual();
         Hide();
+        HideShowPressToRebindKey();
     }
 
     private void GameManager_OnGameUnpaused(object sender,System.EventArgs e) {
@@ -88,5 +94,21 @@ public class OptionsUI : MonoBehaviour {
 
     public void Hide() {
         gameObject.SetActive(false);
+    }
+
+    private void ShowPressToRebindKey() {
+        pressToRebindKeyTransform.gameObject.SetActive(true);
+    }
+    private void HideShowPressToRebindKey() {
+        pressToRebindKeyTransform.gameObject.SetActive(false);
+    }
+
+    private void RebindBinding(GameScript.Binding binding) {
+        ShowPressToRebindKey();
+        GameScript.Instance.RebindBinding(binding,() =>
+        {
+            HideShowPressToRebindKey();
+            UpdateVisual();
+        });
     }
 }
